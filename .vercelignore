@@ -1,0 +1,10 @@
+node_modules/
+.npm-cache/
+dist/
+.git/
+source-assets/
+docs/
+scripts/
+tests/
+SPEC.md
+README.md
