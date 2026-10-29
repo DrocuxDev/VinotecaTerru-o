@@ -1,0 +1,14 @@
+@media (hover: hover) and (pointer: fine) {
+  .button-primary:hover:not(:disabled) { background: #932d48; }
+  .button-secondary:hover:not(:disabled) { border-color: var(--color-gold); }
+  .nav-link:hover { color: var(--color-gold); }
+  .button:hover .button-indicator { transform: translateX(4px); }
+}
+.button-indicator { transition: transform var(--duration-micro) var(--ease-editorial); }
+.button:active:not(:disabled) .button-indicator { transform: translateX(2px); }
+/* Only control indicators move; hit areas and reading surfaces remain fixed. */
+[data-motion='reduced'] .button-indicator { transition: none; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion-preview='true']) *, html:not([data-motion-preview='true']) *::before, html:not([data-motion-preview='true']) *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html:not([data-motion-preview='true']) .button-indicator { transform: none !important; }
+}

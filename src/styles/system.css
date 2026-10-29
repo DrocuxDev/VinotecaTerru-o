@@ -1,0 +1,154 @@
+/* Shared editorial system. Named classes keep refinement local and predictable. */
+@layer base {
+  body { -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { letter-spacing: -.025em; }
+  p { text-wrap: pretty; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  button, a { touch-action: manipulation; }
+  input, select, output, dd { font-variant-numeric: tabular-nums; }
+}
+@layer components {
+  .container-editorial { max-width: 90rem; padding-inline: clamp(1.25rem, 5vw, 5rem); }
+  .section-space { padding-block: clamp(3.5rem, 7.5vw, 7rem); }
+  .eyebrow { font-family: var(--font-sans); font-size: .8125rem; line-height: 1.5; letter-spacing: .025em; text-transform: none; color: var(--color-muted); }
+  .site-header { background: var(--color-background); }
+  .site-wordmark { display: inline-flex; min-height: 3rem; flex-direction: column; justify-content: center; text-decoration: none; }
+  .site-wordmark > span { font-family: var(--font-editorial); font-size: clamp(1.5rem, 2.6vw, 2rem); letter-spacing: .025em; line-height: 1.1; }
+  .site-wordmark small { margin-top: .4rem; color: var(--color-muted); font-size: .625rem; letter-spacing: .025em; }
+  .site-header .nav-link { font-size: .8125rem; }
+  .site-header .nav-link[aria-current='page'] { color: var(--color-cream); border-bottom-color: var(--color-gold); }
+  .page-intro { display: grid; grid-template-columns: minmax(0, 1fr); padding-block: clamp(3rem, 7vw, 6.5rem) clamp(2.5rem, 5vw, 4rem); }
+  .page-category { margin-bottom: 1.25rem; font-size: .8125rem; color: var(--color-muted); }
+  .page-intro h1 { max-width: 15ch; font-size: clamp(2.75rem, 6.8vw, 6.5rem); line-height: 1.02; }
+  .page-title-continuation { display: block; }
+  .page-intro-copy { max-width: 35rem; margin-top: 1.5rem; font-size: 1rem; color: var(--color-muted); }
+  .section-heading { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.5rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .section-heading > div { max-width: 46rem; }
+  .section-category { margin-bottom: 1rem; color: var(--color-muted); font-size: .8125rem; }
+  .section-heading h2 { max-width: 22ch; font-size: clamp(2rem, 4.3vw, 4rem); line-height: 1.08; }
+  .editorial-site h2 em { color: inherit; }
+  .button { min-height: 2.875rem; padding: .75rem 1.25rem; border-radius: var(--radius-editorial); font-size: .8125rem; font-weight: 400; }
+  .button-primary { border-color: var(--color-burgundy); }
+  .button-secondary { background: transparent; border-color: var(--color-line); }
+  .text-link { font-size: .875rem; text-decoration-thickness: 1px; text-decoration-color: var(--color-line); }
+  .text-link:hover { text-decoration-color: var(--color-gold); }
+  .field-control { min-height: 3.25rem; padding: .875rem .75rem; background: var(--color-surface); border-radius: var(--radius-editorial); border-color: var(--color-line); font-size: .9375rem; }
+  .field-control:focus-visible { border-color: var(--color-gold); }
+  textarea.field-control { line-height: 1.65; resize: vertical; }
+  .form-field label { color: var(--color-cream); font-size: .8125rem; }
+  .form-field [id$='-hint'] { max-width: 48ch; font-size: .75rem; }
+  .local-form { border-top: 1px solid var(--color-line); padding-top: 1.5rem; }
+  .local-form > p:first-child { font-size: .75rem; }
+  .product-card { padding-bottom: 1.5rem; }
+  .product-card > .product-image, .product-card > a > .product-image { border-radius: var(--radius-editorial); }
+  .product-provenance { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; margin-top: 1.25rem; color: var(--color-muted); font-family: var(--font-sans); font-size: .75rem; font-variant-numeric: tabular-nums; }
+  .product-card-name { margin-top: .65rem; font-size: clamp(1.875rem, 2.8vw, 2.5rem); line-height: 1.1; }
+  .product-card a:hover .product-card-name { color: var(--color-gold); }
+  .product-card-purchase { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--color-line); }
+  .product-price { font-size: 1rem; font-variant-numeric: tabular-nums; }
+  .product-price-note { margin-top: .25rem; font-size: .6875rem; color: var(--color-muted); }
+  .product-card-purchase .button { padding-inline: .875rem; }
+  .catalog-toolbar { font-size: .8125rem; }
+  .catalog-toolbar [role='status'] { font-family: var(--font-sans); }
+  .catalog-page aside > div { border-top: 1px solid var(--color-line); padding-top: 1.5rem; }
+  .wine-detail h1 { max-width: 13ch; }
+  .wine-detail-price > p:first-child { font-size: 2.5rem; font-variant-numeric: tabular-nums; }
+  .editorial-faq summary { font-size: clamp(1.375rem, 2.5vw, 1.875rem); line-height: 1.25; }
+  .editorial-faq details > p { max-width: 54rem; font-size: .9375rem; }
+  .overlay:not(.overlay-search) { border-radius: var(--radius-editorial); padding: clamp(1.5rem, 3.5vw, 3rem); }
+  .overlay:not(.overlay-search) h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
+  .overlay:not(.overlay-search) > div > div:first-child { padding-bottom: 1rem; border-bottom: 1px solid var(--color-line); }
+  .overlay-drawer { border-radius: 0; }
+  .club-plan { display: flex; flex-direction: column; border: 1px solid transparent; position: relative; border-color: transparent; border-top-color: var(--color-line); background: var(--color-surface); padding: clamp(1.5rem, 3vw, 2.5rem); }
+  .club-plan.is-selected { border-color: var(--color-gold); background: var(--color-raised); }
+  .club-plan > .eyebrow { min-height: 1.5rem; color: var(--color-muted); }
+  .club-plan.is-selected > .eyebrow { color: var(--color-gold); }
+  .club-plan h2 { margin-top: 1.5rem; font-size: clamp(2rem, 3vw, 2.75rem); }
+  .club-plan ul { line-height: 1.7; }
+  .tasting-entry > div:first-child { max-width: 44rem; }
+  .tasting-entry h3 { font-size: clamp(2rem, 3.4vw, 3rem); }
+  .tasting-entry > div:last-child { padding-top: .25rem; }
+  .checkout-page h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); max-width: 13ch; }
+  .checkout-page nav ol > li > span:first-child { font-family: var(--font-sans); font-variant-numeric: tabular-nums; }
+  .checkout-page nav li[aria-current='step'] { color: var(--color-cream); }
+  .purchase-summary { background: var(--color-surface); padding: clamp(1.5rem, 3vw, 2rem); border: 0; border-top: 2px solid var(--color-gold); }
+  .purchase-summary > .eyebrow { color: var(--color-cream); }
+  .purchase-totals dd { font-variant-numeric: tabular-nums; }
+  .purchase-totals dl > div:last-child dd { color: var(--color-cream); }
+  .order-receipt { background: var(--color-surface); padding: clamp(1.5rem, 4vw, 3rem); border: 0; border-top: 2px solid var(--color-gold); }
+  .home-caption { letter-spacing: 0; }
+  .agenda-mark { color: var(--color-muted); }
+  .site-footer { padding-top: clamp(3.5rem, 7vw, 6rem); background: var(--color-surface); border-top: 1px solid var(--color-line); }
+  .footer-main { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, .75fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); padding-bottom: 3rem; }
+  .footer-signature > a { font-family: var(--font-editorial); font-size: clamp(2rem, 3.5vw, 3rem); letter-spacing: .015em; line-height: 1.15; }
+  .footer-signature > p { margin-top: 1rem; color: var(--color-muted); font-family: var(--font-editorial); font-size: 1.375rem; }
+  .footer-signature > span { display: block; margin-top: 1.5rem; color: var(--color-muted); font-size: .75rem; }
+  .footer-navigation { display: flex; align-items: start; flex-direction: column; }
+  .footer-navigation > p, .footer-preferences > p { margin-bottom: 1rem; font-size: .75rem; color: var(--color-muted); }
+  .footer-navigation > a, .footer-colophon > a { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: .8125rem; }
+  .footer-navigation > a:hover, .footer-colophon > a:hover { color: var(--color-gold); }
+  .footer-preferences { min-width: 0; }
+  .footer-preferences label { font-size: .8125rem; }
+  .footer-colophon { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-block: 1rem; border-top: 1px solid var(--color-line); }
+  .footer-colophon > p, .footer-colophon > a { color: var(--color-muted); font-size: .6875rem; }
+}
+@media (min-width: 1024px) {
+  .page-intro { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); column-gap: 4rem; align-items: end; }
+  .page-intro .page-category { grid-column: 1 / -1; }
+  .page-intro h1 { grid-column: 1; }
+  .page-intro-copy { grid-column: 2; margin-top: 0; padding-bottom: .35rem; }
+}
+@media (max-width: 767px) {
+  .site-wordmark small { display: none; }
+  .footer-main { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .footer-signature { grid-column: 1 / -1; }
+  .section-heading { align-items: start; }
+}
+@media (max-width: 389px) {
+  .site-wordmark > span { font-size: 1.25rem; }
+  .site-header .container-editorial { column-gap: .75rem; }
+  .footer-main { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* Step 4: contain long text, preserve usable columns and respect viewport height. */
+@layer components {
+  .editorial-site :where(.grid) > * { min-width: 0; }
+  .editorial-site :where(h1, h2, h3, p, dd) { overflow-wrap: break-word; }
+  .page-intro > *, .section-heading > *, .purchase-summary, .order-receipt { min-width: 0; }
+  .catalog-products { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: 2rem; row-gap: 3.5rem; }
+  .active-filter { max-width: 100%; overflow-wrap: anywhere; text-align: left; }
+  .active-filter .button-content { min-width: 0; }
+  .catalog-order { min-width: 0; flex-wrap: wrap; }
+  .catalog-order select { min-width: 0; max-width: 100%; }
+  .bottle-viewer { min-width: 0; }
+  .bottle-controls .button { padding-inline: .875rem; }
+  .overlay.overlay-drawer { border-radius: 0; padding-bottom: max(2rem, env(safe-area-inset-bottom)); }
+  .overlay > div { min-width: 0; }
+  .overlay h2 { min-width: 0; overflow-wrap: break-word; }
+  .overlay > div > div:first-child > .button { flex-shrink: 0; }
+  .checkout-steps li { min-width: 0; overflow-wrap: break-word; }
+}
+@media (min-width: 768px) {
+  .catalog-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* The sidebar consumes width: keep two readable product columns at 1536px. */
+@media (min-width: 1280px) {
+  .catalog-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .field-control { font-size: 1rem; }
+  .page-intro h1 { font-size: clamp(2.5rem, 9vw, 4rem); }
+}
+@media (max-width: 479px) {
+  .site-header-actions { width: 100%; justify-content: space-between; }
+  .site-header .container-editorial { row-gap: .5rem; }
+  .catalog-toolbar > div { width: 100%; }
+  .catalog-order { flex: 1; }
+  .catalog-order select { width: 100%; }
+  .bottle-controls { gap: .5rem; }
+  .checkout-steps { column-gap: .5rem; }
+}
+@media (max-height: 700px) and (min-width: 1024px) {
+  .wine-detail .lg\:sticky, .purchase-summary.lg\:sticky { position: static; }
+}

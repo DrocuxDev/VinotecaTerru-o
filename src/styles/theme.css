@@ -1,0 +1,36 @@
+@theme {
+  --color-background: #100d0f;
+  --color-surface: #191316;
+  --color-raised: #241c20;
+  --color-cream: #f2e9da;
+  --color-muted: #c6bcae;
+  --color-gold: #c7a15a;
+  --color-burgundy: #7b223b;
+  --color-line: #51434a;
+  --color-error: #ffb4ab;
+  --font-editorial: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --spacing: 0.25rem;
+  --radius-editorial: 0.25rem;
+  --radius-control: 0.5rem;
+  --text-hero: clamp(3rem, 8vw, 8rem);
+  --text-heading: clamp(2.25rem, 5vw, 4.5rem);
+}
+
+:root {
+  --layer-content: 0;
+  --layer-header: 30;
+  --layer-floating: 40;
+  --layer-transition: 50;
+  --layer-drawer: 60;
+  --layer-dialog: 70;
+  --layer-notice: 80;
+  --duration-response: 150ms;
+  --duration-micro: 220ms;
+  --duration-container: 350ms;
+  --duration-continuity: 540ms;
+  --duration-editorial: 650ms;
+  --duration-hero: 850ms;
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
