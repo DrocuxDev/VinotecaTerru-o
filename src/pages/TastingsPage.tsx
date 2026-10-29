@@ -1,0 +1,23 @@
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { tastings, formatDate, currency } from '../data/catalog';
+import type { Tasting } from '../data/contracts';
+import { Button, ButtonLink } from '../components/ui/Button';
+import { FAQ, PageIntro, Photo, SectionTitle } from '../components/editorial/Editorial';
+import { LocalForm } from '../components/forms/LocalForm';
+import { useOverlay } from '../app/providers/OverlayProvider';
+
+function TastingDetail({ tasting }: { tasting: Tasting }) {
+  return <div><p className="eyebrow">{tasting.region} / {formatDate(tasting.date)}</p><p className="mt-4 text-muted">{tasting.description}</p><dl className="my-6 grid gap-4 border-y border-line py-6 sm:grid-cols-2"><div><dt className="text-xs text-muted">Lugar</dt><dd>{tasting.location}</dd></div><div><dt className="text-xs text-muted">Hora</dt><dd>{new Intl.DateTimeFormat('es-PE', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Lima' }).format(new Date(tasting.date))}</dd></div><div><dt className="text-xs text-muted">Precio por persona</dt><dd>{currency(tasting.priceCents)} por persona</dd></div><div><dt className="text-xs text-muted">Aforo</dt><dd>{tasting.capacity} personas</dd></div></dl><div className="mt-8">{tasting.status === 'full' ? <p className="text-muted">Este encuentro no tiene cupos disponibles. Explora otra experiencia de la agenda.</p> : <LocalForm key={tasting.id} purpose={tasting.status === 'waitlist' ? 'Has completado los datos para la lista de espera' : `Has completado los datos para ${tasting.title}`} submitLabel={tasting.status === 'waitlist' ? 'Solicitar lista de espera' : 'Solicitar reserva'} attendees={Math.min(tasting.capacity, 6)} />}</div></div>;
+}
+export default function TastingsPage() {
+  const [params] = useSearchParams();
+  const [region, setRegion] = useState('');
+  const { show } = useOverlay();
+  const selected = params.get('experiencia');
+  useEffect(() => { const tasting = tastings.find(value => value.id === selected); if (tasting) show({ title: tasting.title, variant: 'drawer', children: <TastingDetail tasting={tasting} /> }); }, [selected, show]);
+  const statuses = { available: 'Disponible', waitlist: 'Lista de espera', full: 'Sin cupos' };
+  return <><PageIntro index="02 / Experiencias" title="Un encuentro," italic="muchas historias."><p>El vino abre la conversación. La mesa, el paisaje y el tiempo hacen el resto.</p></PageIntro><div className="container-editorial"><Photo name="cellar" alt="Barricas de vino en una cava. Imagen de ambiente para las experiencias." className="aspect-[16/7]" /></div>
+    <section className="container-editorial section-space"><SectionTitle index="La agenda" title="Próximas catas."><label className="text-sm">Región<select className="field-control mt-2" value={region} onChange={event => setRegion(event.target.value)}><option value="">Todas las regiones</option><option>Ica</option><option>Majes</option></select></label></SectionTitle><div className="mt-8 divide-y divide-line border-y border-line">{tastings.filter(tasting => !region || tasting.region === region).map(tasting => <article key={tasting.id} className="tasting-entry grid items-start gap-6 py-10 md:grid-cols-[1fr_auto]"><div><p className="eyebrow">{formatDate(tasting.date)} / {tasting.region}</p><h3 className="mt-4 text-4xl">{tasting.title}</h3><p className="mt-4 text-muted">{tasting.description}</p><p className="mt-4 text-sm text-gold">{statuses[tasting.status]}</p></div><div><p className="mb-4 text-xl">{currency(tasting.priceCents)} <span className="text-xs text-muted">por persona</span></p><Button variant="secondary" onClick={() => show({ title: tasting.title, variant: 'drawer', children: <TastingDetail tasting={tasting} /> })} aria-haspopup="dialog">{tasting.status === 'full' ? 'Ver experiencia' : tasting.status === 'waitlist' ? 'Lista de espera' : 'Explorar y reservar'}</Button></div></article>)}</div></section>
+    <section className="container-editorial section-space border-t border-line"><SectionTitle index="Antes del encuentro" title="Una pausa para tus dudas." /><FAQ items={[{ title: '¿Cómo elijo una experiencia?', text: 'Consulta la agenda, revisa la fecha y abre el detalle de la cata para conocer su contenido y seleccionar asistentes.' }, { title: '¿Dónde se realizan las catas?', text: 'La agenda reúne encuentros en Ica y Majes. La región aparece en el detalle de cada experiencia.' }, { title: '¿Puedo acudir con más personas?', text: 'Selecciona el número de asistentes en el formulario. Si la experiencia no tiene cupos, puedes consultar otras fechas de la agenda.' }]} /><ButtonLink to="/contacto" variant="secondary" className="mt-8">Otra consulta</ButtonLink></section></>;
+}
