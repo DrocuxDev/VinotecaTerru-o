@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-10-28T21:04:46.104Z",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/coleccion?tipo=Tinto",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/vino/gran-reserva",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/vino/desconocido",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/catas",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/club",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/nosotros",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/contacto",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/checkout/datos",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/checkout/entrega",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/checkout/pago",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/pedido-confirmado",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/carrito-vacio",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    },
+    {
+      "path": "/ruta-no-existente",
+      "status": 200,
+      "check": "SPA HTML delivered; client route behavior not executed."
+    }
+  ],
+  "modelBytes": 1830944,
+  "posterStatus": 200,
+  "browserExecuted": false
+}
